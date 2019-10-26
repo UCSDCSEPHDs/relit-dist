@@ -15,6 +15,8 @@ const querystring = require('querystring')
 const validator = require('express-validator')
 const translator = require('./translator')
 
+require('log-timestamp')
+
 /**
  * Server Instance Script
  * @version 0.0.1
