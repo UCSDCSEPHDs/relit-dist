@@ -41,13 +41,15 @@ app.post('/classify', [validator.body('img').exists()], async (req, res) => {
       const primary = list[0]
       return Promise.all([
         translator.translate(primary.name),
-        translator.translate(primary.lajitip)
+        translator.translate(primary.lajitip),
+        Promise.resolve(primary.lajitype)
       ])
     })
     .then(info => {
       return res.json({
         name: info[0].TargetText,
-        tip: info[1].TargetText
+        tip: info[1].TargetText,
+        type: info[2]
       })
     })
 })
