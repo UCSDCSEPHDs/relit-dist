@@ -1,3 +1,4 @@
 node_modules/
 config/
 assets/
+.DS_Store
