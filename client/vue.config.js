@@ -13,5 +13,9 @@ module.exports = {
       }
     }
   },
+  pwa: {
+    name: 're:Lit',
+    themeColor: '#ffffff'
+  },
   lintOnSave: false
 }

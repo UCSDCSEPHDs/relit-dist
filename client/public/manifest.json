@@ -1,6 +1,5 @@
 {
   "name": "re:Lit",
-  "short_name": "reLit",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#fffff",
