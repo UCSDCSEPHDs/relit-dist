@@ -50,11 +50,6 @@ export default {
       .description {
         color: $descriptive;
       }
-      .button-enclosure {
-        width: 80%;
-        height: 3rem;
-        margin: 2rem;
-      }
     }
 
   }

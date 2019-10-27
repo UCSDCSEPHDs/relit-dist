@@ -18,9 +18,13 @@ export default {
   },
   mounted: function () {},
   mixins: [ vueWindowSizeMixin ],
-  onError: function () {
-    this.$router.replace('error')
+  methods: {
+    onError: function (e) {
+      console.log(e)
+      // this.$router.replace('error')
+    }
   }
+
 }
 </script>
 

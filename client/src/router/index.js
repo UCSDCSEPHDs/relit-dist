@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Landing from '@/views/Landing.vue'
 import Scan from '@/views/Scan.vue'
 import Error from '@/views/Error.vue'
+import Result from '@/views/Result.vue'
 
 Vue.use(VueRouter)
 
@@ -21,15 +22,12 @@ const routes = [
     path: '/error',
     name: 'error',
     component: Error
+  },
+  {
+    path: '/result',
+    name: 'result',
+    component: Result
   }
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
 ]
 
 const router = new VueRouter({

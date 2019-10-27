@@ -1,4 +1,6 @@
+const fs = require('fs')
 const path = require('path')
+const https = require('https')
 const express = require('express')
 const app = express()
 const config = {
@@ -7,7 +9,7 @@ const config = {
       port: 'p'
     },
     default: {
-      port: 8083
+      port: 443
     }
   }),
   ...require(path.resolve('./config/token.json'))
@@ -63,4 +65,8 @@ app.post('/classify', [validator.body('img').exists()], async (req, res) => {
     })
 })
 
-app.listen(config.port, () => console.log(`Server instance started on ${config.port}`))
+https.createServer({
+  pfx: fs.readFileSync(path.resolve(config.ssl_pfx)),
+  password: fs.readFileSync(path.resolve(config.ssl_passphrase))
+}, app)
+  .listen(config.port, () => console.log(`Server instance started on ${config.port}`))

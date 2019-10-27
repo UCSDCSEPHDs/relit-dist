@@ -33,4 +33,9 @@
       max-height: 20vh;
     }
   }
+  .button-enclosure {
+    width: 80%;
+    height: 3rem;
+    margin: 2rem;
+  }
 </style>

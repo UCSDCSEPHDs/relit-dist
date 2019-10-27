@@ -23,9 +23,6 @@ export default {
 </script>
 
 <style lang="scss" @scoped>
-@import url('https://use.typekit.net/dav4knx.css');
-@import '@/assets/mixins/flex';
-@import '@/assets/mixins/font';
   .landing {
     @include flexbox();
     @include flex-direction(column);
@@ -42,7 +39,7 @@ export default {
       width: 100%;
       height: auto;
       img {
-        max-width: 15rem;
+        max-width: 18rem;
         box-sizing: border-box;
         padding: 7px 15px;
       }
@@ -64,11 +61,6 @@ export default {
           font-size: 16pt;
           color: $descriptive;
         }
-      }
-      .button-enclosure {
-        width: 80%;
-        height: 3rem;
-        margin: 2rem;
       }
     }
   }
