@@ -1,0 +1,25 @@
+{
+  "name": "re:Lit",
+  "short_name": "reLit",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fffff",
+  "description": "A PWA that leverages computer vision to classify recyclable garbages in the image, encouraging an environmentally friendly way of disposing our garbage.",
+  "icons": [{
+    "src": "/img/icons/apple-icon-72x72.png",
+    "sizes": "72x72",
+    "type": "image/png"
+  }, {
+    "src": "/img/icons/apple-icon-144x144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "/img/icons/andriod-icon-72x72.png",
+    "sizes": "72x72",
+    "type": "image/png"
+  }, {
+    "src": "/img/icons/andriod-icon-144x144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }]
+}
