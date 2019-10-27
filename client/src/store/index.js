@@ -7,8 +7,8 @@ export default new Vuex.Store({
   state: {
     result: {
       type: 0,
-      name: 'Lorem Ipsum',
-      tip: 'Zhu ma dian Ren yi Men'
+      name: 'Watter Bottle',
+      tip: 'Bottled drinks are recyclable waste, including all kinds of scrap metal, glass bottles, beverage bottles, electronic products and so on. When putting in, we should pay attention to light handling, clean and dry, and avoid pollution.'
     }
   },
   mutations: {

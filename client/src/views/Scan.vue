@@ -47,53 +47,54 @@ export default {
     img: function () {
       console.log(this.$data.img)
     },
-    camera: function(id) {
+    camera: function (id) {
       this.deviceId = id;
     },
-    devices: function() {
+    devices: function () {
       // Once we have a list select the first one
       const length = this.devices.length
       const [first, second, ...rest] = this.devices
       let that = this
-      if(length == 1){
+      if (length == 1) {
         that.camera = first.deviceId
         that.deviceId = first.deviceId
-      }else if(length > 1){
+      } else if (length > 1) {
         that.camera = second.deviceId
         that.deviceId = second.deviceId
-      }else{
+      } else {
         console.error("No camera detected")
       }
     }
   },
 
   methods: {
-    onCapture() {
-      this.img = this.$refs.webcam.capture();
+    onCapture () {
+      this.img = this.$refs.webcam.capture()
+      this.$router.push('result')
     },
-    onStarted(stream) {
-      console.log("On Started Event", stream);
+    onStarted (stream) {
+      console.log("On Started Event", stream)
     },
-    onStopped(stream) {
-      console.log("On Stopped Event", stream);
+    onStopped (stream) {
+      console.log("On Stopped Event", stream)
     },
-    onStop() {
-      this.$refs.webcam.stop();
+    onStop () {
+      this.$refs.webcam.stop()
     },
-    onStart() {
-      this.$refs.webcam.start();
+    onStart () {
+      this.$refs.webcam.start()
     },
-    onError(error) {
-      console.log("On Error Event", error);
+    onError (error) {
+      this.$router.replace('error')
     },
-    onCameras(cameras) {
+    onCameras (cameras) {
       this.devices = cameras;
-      console.log("On Cameras Event", cameras);
+      console.log("On Cameras Event", cameras)
     },
-    onCameraChange(deviceId) {
+    onCameraChange (deviceId) {
       this.deviceId = deviceId;
       this.camera = deviceId;
-      console.log("On Camera Change Event", deviceId);
+      console.log("On Camera Change Event", deviceId)
     }
   }
 
@@ -123,7 +124,6 @@ export default {
       bottom: 0;
       padding-bottom: 88px;
       width: 100%;
-      background: green;
       z-index: 1;
       .shutter {
         @include flexbox();
@@ -142,49 +142,3 @@ export default {
     }
   }
 </style>
-<!-- <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Current Camera</h2>
-                <code v-if="device">{{ device.label }}</code>
-                <div class="border">
-                    <vue-web-cam
-                        ref="webcam"
-                        :device-id="deviceId"
-                        width="100%"
-                        @started="onStarted"
-                        @stopped="onStopped"
-                        @error="onError"
-                        @cameras="onCameras"
-                        @camera-change="onCameraChange"
-                    />
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <select v-model="camera">
-                            <option> Select Device </option>
-                            <option
-                                v-for="device in devices"
-                                :key="device.deviceId"
-                                :value="device.deviceId"
-                            >{{ device.label }}</option>
-                        </select>
-                    </div>
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-primary" @click="onCapture">Capture Photo</button>
-                        <button type="button" class="btn btn-danger" @click="onStop">Stop Camera</button>
-                        <button type="button" class="btn btn-success" @click="onStart">Start Camera</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <h2>Captured Image</h2>
-                <figure class="figure">
-                    <img :src="img" class="img-responsive" />
-                </figure>
-            </div>
-        </div>
-    </div>
-</template> -->
