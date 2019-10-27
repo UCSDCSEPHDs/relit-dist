@@ -1,23 +1,37 @@
 <template lang="html">
   <div class="scan">
-    <vue-webrtc width="100%" />
+    <div><video ref="video" id="video" width="640" height="480" autoplay></video></div>
   </div>
 </template>
 
 <script>
-import { WebRTC } from 'vue-webrtc'
-
 export default {
   name: 'Scan',
-  components: {
-    [WebRTC.name]: WebRTC
+  data () {
+    return {
+      video: {},
+      captures: []
+    }
+  },
+  components: {},
+  mounted: function () {
+    this.video = this.$refs.video
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({
+        video: true
+      })
+        .then(stream => {
+          this.video.src = window.URL.createObjectURL(stream)
+          this.video.play()
+        })
+        .catch(e => {
+          this.$router.replace('error')
+        })
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .scan {
-    width: 100%;
-    height: $router-view-height
-  }
+
 </style>

@@ -38,7 +38,7 @@ export default {
       @include flex-direction(column);
       @include align-items(center);
       position: relative;
-      bottom: 1rem;
+      bottom: 2rem;
       width: 100%;
       height: auto;
       img {
@@ -62,13 +62,13 @@ export default {
         }
         .description {
           font-size: 16pt;
-          color: #b2b2b2;
+          color: $descriptive;
         }
       }
       .button-enclosure {
         width: 80%;
         height: 3rem;
-        margin: 3rem;
+        margin: 2rem;
       }
     }
   }

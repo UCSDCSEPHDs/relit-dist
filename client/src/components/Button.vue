@@ -18,7 +18,7 @@ export default {
     width: 100%;
     height: 100%;
     color: white;
-    background: linear-gradient(to right, #FF4E3B, #FF7800);
+    background: linear-gradient(to right, $primary, $secondary);
     border: none;
     border-radius: 3rem;
   }
