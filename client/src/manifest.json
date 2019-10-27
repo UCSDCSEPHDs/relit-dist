@@ -1,0 +1,13 @@
+{
+  "name": "re:Lit",
+  "short_name": "reLit",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fffff",
+  "description": "A PWA that leverages computer vision to classify recyclable garbages in the image, encouraging an environmentally friendly way of disposing our garbage.",
+  "icons": [{
+    "src": "assets/icon.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}

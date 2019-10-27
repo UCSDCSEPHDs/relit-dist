@@ -69,7 +69,7 @@ export default {
       @include flexbox();
       @include flex-direction(column);
       @include align-items(column);
-      padding: 0 3em;
+      padding: 0 2em;
       box-sizing: border-box;
       text-align: center;
     }

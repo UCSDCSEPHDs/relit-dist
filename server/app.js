@@ -17,6 +17,7 @@ const config = {
 const querystring = require('querystring')
 const validator = require('express-validator')
 const translator = require('./translator')
+const favicon = require('serve-favicon')
 
 require('log-timestamp')
 
@@ -27,6 +28,7 @@ require('log-timestamp')
  */
 
 app.use('/', express.static(path.resolve('../client/dist')))
+app.use(favicon(path.resolve('../client/src/assets/favicon.ico')))
 
 app.use(require('body-parser').json())
 

@@ -17,6 +17,7 @@
     "express-validator": "^6.2.0",
     "getopts": "^2.2.5",
     "querystring": "^0.2.0",
+    "serve-favicon": "^2.5.0",
     "tencentcloud-sdk-nodejs": "^3.0.91",
     "validator": "^11.1.0"
   },
