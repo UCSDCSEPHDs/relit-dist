@@ -12,3 +12,7 @@ reLit is a PWA(progressive web app) that uses computer vision to identify recycl
 
 ## Installation
 Run `npm install` in the server/client directory to install required packages. 
+
+## Related Links
+[ReLit-Dev](https://github.com/liuhanshu2000/ReLit-Dev) is our development repository.
+[relit-yolo](https://github.com/SeuperHakkerJa/relit-yolo) is our demo app using YOLO library. 
