@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="result">
-    <p class="description">Got it!</p>
+    <p class="description">{{ $store.getters.result.type === 4 ? 'Hmmm...' : 'Got it!' }}</p>
     <p class="title">{{ $store.getters.result.name }}</p>
     <div class="type">
       <img :src="resolveIcon" />
@@ -9,7 +9,7 @@
     <div class="tip">
       <p>{{ $store.getters.result.tip }}</p>
     </div>
-    <router-link class="button-enclosure" :to="{ name: 'landing' }"><Button label="Rescan" /></router-link>
+    <router-link class="button-enclosure" :to="{ name: 'scan' }"><Button label="Rescan" /></router-link>
   </div>
 </template>
 
@@ -26,13 +26,13 @@ export default {
   },
   computed: {
     resolveType: function () {
-      return ['Recycable', 'Hazardous', 'Wet', 'Dry'][this.$store.getters.result.type]
+      return ['Recycable', 'Hazardous', 'Wet', 'Dry', 'Not Trash'][this.$store.getters.result.type]
     },
     resolveIcon: function () {
-      return require.context('@/assets/images/', false, /\.png$/)(`./${['recycable'][this.$store.getters.result.type]}.png`)
+      return require.context('@/assets/images/', false, /\.png$/)(`./${['recycable', 'hazardous', 'wet', 'dry', 'error'][this.$store.getters.result.type]}.png`)
     },
     resolveColor: function () {
-      return ['#1aad19'][this.$store.getters.result.type]
+      return ['#1aad19', '#d81e06', 'brown', 'black', 'black'][this.$store.getters.result.type]
     }
   }
 }

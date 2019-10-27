@@ -8,6 +8,7 @@
           height="100%"
           @error="onError"
           @cameras="onCameras"
+          @notsupported="onError"
       />
     </div>
     <div class="controls">
@@ -15,7 +16,7 @@
         <img src="@/assets/images/shutter.svg" />
       </div>
     </div>
-    <b-modal id="waiting" title="Hang Tight!" centered ok-only ok-title="Got it!">
+    <b-modal id="waiting" title="Hang Tight!" centered ok-only :ok-title="okTitle" :busy="busy" @ok="onConfirm">
       <p>re:Lit is processing your image!</p>
     </b-modal>
   </div>
@@ -41,6 +42,12 @@ export default {
   computed: {
     device: function () {
       return this.devices.find(n => n.deviceId === this.deviceId)
+    },
+    busy: function () {
+      return this.$store.getters.requesting
+    },
+    okTitle: function () {
+      return this.$store.getters.requesting ? 'Pending...' : 'Got it!'
     }
   },
   watch: {
@@ -49,16 +56,12 @@ export default {
     },
     devices: function () {
       const length = this.devices.length
-      // const [first, second, ...rest] = this.devices
-      // let that = this
       if (length === 1) {
         this.camera = this.devices[0].deviceId
         this.deviceId = this.devices[0].deviceId
       } else if (length > 1) {
         this.camera = this.devices[1].deviceId
         this.deviceId = this.devices[1].deviceId
-      } else {
-        console.error('No camera detected')
       }
     }
   },
@@ -66,17 +69,22 @@ export default {
   methods: {
     onCapture () {
       this.img = this.$refs.webcam.capture()
-      console.log(this.img)
       this.$store.commit('beginRequest')
       this.$bvModal.show('waiting')
       post('https://relit.xyz/classify', {
         img: this.img
       })
-        .then(res => console.log(res.data))
+        .then(({ data }) => {
+          this.$store.commit('updateResult', data)
+          this.$store.commit('endRequest')
+          // this.$router.push('result')
+        })
       // this.$router.push('result')
     },
+    onConfirm: function () {
+      this.$router.push('result')
+    },
     onError (error) {
-      console.log(error)
       this.$router.replace('error')
     },
     onCameras (cameras) {

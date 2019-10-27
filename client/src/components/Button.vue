@@ -20,6 +20,6 @@ export default {
     color: white;
     background: linear-gradient(to right, $primary, $secondary);
     border: none;
-    border-radius: 3rem;
+    border-radius: 3rem !important;
   }
 </style>
