@@ -43,7 +43,7 @@ app.post('/classify', [validator.body('img').exists()], async (req, res) => {
     }
   })
     .then(({ data: { code, newslist } }) => {
-      if (code === 200) { Promise.resolve(newslist) } else { throw new Error({ msg: `${code}: Cannot detect object from given data` }) }
+      if (code === 200) { return Promise.resolve(newslist) } else { throw new Error({ msg: `${code}: Cannot detect object from given data` }) }
       // return code === 200 ? Promise.resolve(newslist) : res.status(code).end()
     })
     .then(list => {
