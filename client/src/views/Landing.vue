@@ -6,8 +6,8 @@
         <p class="title">No More Doubts.</p>
         <p class="description">Let re:Lit tells you where your trash should go</p>
       </div>
+      <router-link class="button-enclosure" :to="{ name: 'scan' }"><Button label="Scan It!" /></router-link>
     </div>
-    <router-link class="button-enclosure" :to="{ name: 'scan' }"><Button label="Scan It!" /></router-link>
   </div>
 </template>
 
@@ -38,7 +38,7 @@ export default {
       @include flex-direction(column);
       @include align-items(center);
       position: relative;
-      bottom: 5rem;
+      bottom: 1rem;
       width: 100%;
       height: auto;
       img {
@@ -65,12 +65,11 @@ export default {
           color: #b2b2b2;
         }
       }
-    }
-    .button-enclosure {
-      position: absolute;
-      bottom: 5rem;
-      width: 80%;
-      height: 3rem;
+      .button-enclosure {
+        width: 80%;
+        height: 3rem;
+        margin: 3rem;
+      }
     }
   }
 </style>
