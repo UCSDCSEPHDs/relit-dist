@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    requesting: false,
     result: {
       type: 0,
       name: 'Watter Bottle',
@@ -14,6 +15,12 @@ export default new Vuex.Store({
   mutations: {
     updateResult (state, result) {
       state.result = result
+    },
+    beginRequest (state) {
+      state.requesting = true
+    },
+    endRequest (state) {
+      state.requesting = false
     }
   },
   actions: {
@@ -21,6 +28,7 @@ export default new Vuex.Store({
   modules: {
   },
   getters: {
-    result: state => state.result
+    result: state => state.result,
+    requesting: state => state.requesting
   }
 })

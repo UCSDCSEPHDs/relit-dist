@@ -6,63 +6,59 @@
           :device-id="deviceId"
           width="100%"
           height="100%"
-          @started="onStarted"
-          @stopped="onStopped"
           @error="onError"
           @cameras="onCameras"
-          @camera-change="onCameraChange"
       />
     </div>
     <div class="controls">
       <div class="shutter" @click="onCapture">
         <img src="@/assets/images/shutter.svg" />
       </div>
-      <!-- <img src="@/assets/images/shutter.png" @click="onCapture" /> -->
     </div>
+    <b-modal id="waiting" title="Hang Tight!" centered ok-only ok-title="Got it!">
+      <p>re:Lit is processing your image!</p>
+    </b-modal>
   </div>
 </template>
 
 <script>
 import { WebCam } from 'vue-web-cam'
+import { post } from 'axios'
 
 export default {
   name: 'scan',
-  data() {
+  data () {
     return {
       img: null,
       camera: null,
       deviceId: null,
       devices: []
-    };
+    }
   },
   components: {
     WebCam
   },
   computed: {
-    device: function() {
-      return this.devices.find(n => n.deviceId === this.deviceId);
+    device: function () {
+      return this.devices.find(n => n.deviceId === this.deviceId)
     }
   },
   watch: {
-    img: function () {
-      console.log(this.$data.img)
-    },
     camera: function (id) {
-      this.deviceId = id;
+      this.deviceId = id
     },
     devices: function () {
-      // Once we have a list select the first one
       const length = this.devices.length
-      const [first, second, ...rest] = this.devices
-      let that = this
-      if (length == 1) {
-        that.camera = first.deviceId
-        that.deviceId = first.deviceId
+      // const [first, second, ...rest] = this.devices
+      // let that = this
+      if (length === 1) {
+        this.camera = this.devices[0].deviceId
+        this.deviceId = this.devices[0].deviceId
       } else if (length > 1) {
-        that.camera = second.deviceId
-        that.deviceId = second.deviceId
+        this.camera = this.devices[1].deviceId
+        this.deviceId = this.devices[1].deviceId
       } else {
-        console.error("No camera detected")
+        console.error('No camera detected')
       }
     }
   },
@@ -70,31 +66,21 @@ export default {
   methods: {
     onCapture () {
       this.img = this.$refs.webcam.capture()
-      this.$router.push('result')
-    },
-    onStarted (stream) {
-      console.log("On Started Event", stream)
-    },
-    onStopped (stream) {
-      console.log("On Stopped Event", stream)
-    },
-    onStop () {
-      this.$refs.webcam.stop()
-    },
-    onStart () {
-      this.$refs.webcam.start()
+      console.log(this.img)
+      this.$store.commit('beginRequest')
+      this.$bvModal.show('waiting')
+      post('https://relit.xyz/classify', {
+        img: this.img
+      })
+        .then(res => console.log(res.data))
+      // this.$router.push('result')
     },
     onError (error) {
+      console.log(error)
       this.$router.replace('error')
     },
     onCameras (cameras) {
-      this.devices = cameras;
-      console.log("On Cameras Event", cameras)
-    },
-    onCameraChange (deviceId) {
-      this.deviceId = deviceId;
-      this.camera = deviceId;
-      console.log("On Camera Change Event", deviceId)
+      this.devices = cameras
     }
   }
 
