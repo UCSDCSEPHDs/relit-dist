@@ -54,10 +54,12 @@ export default {
           margin: 0 !important;
         }
         .title {
+          @include font('gilbert');
           font-size: 24pt;
           padding: 15px 0;
         }
         .description {
+          @include font('gilbert');
           font-size: 16pt;
           color: $descriptive;
         }

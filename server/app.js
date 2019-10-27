@@ -17,7 +17,6 @@ const config = {
 const querystring = require('querystring')
 const validator = require('express-validator')
 const translator = require('./translator')
-const favicon = require('serve-favicon')
 
 require('log-timestamp')
 
@@ -29,7 +28,7 @@ require('log-timestamp')
 
 app.use('/', express.static(path.resolve('../client/dist')))
 
-app.use(require('body-parser').json())
+app.use(require('body-parser').json({ limit: '10mb', extended: true }))
 
 app.post('/classify', [validator.body('img').exists()], async (req, res) => {
   if (!validator.validationResult(req).isEmpty()) { return res.status(400).end() }

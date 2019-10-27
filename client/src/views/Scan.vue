@@ -16,8 +16,9 @@
         <img src="@/assets/images/shutter.svg" />
       </div>
     </div>
-    <b-modal id="waiting" title="Hang Tight!" centered ok-only :ok-title="okTitle" :busy="busy" @ok="onConfirm">
-      <p>re:Lit is processing your image!</p>
+    <b-modal id="waiting" title="Hang Tight!" centered ok-only :ok-title="okTitle" :busy="busy" @ok="onConfirm" @close="onCancel">
+      <p>{{ this.$store.getters.requesting ? 're:Lit is processing your image!' : `All done! Let's head over to the result page` }}</p>
+      <!-- <b-button v-slot:modal-footer pill variant="primary">{{ okTitle }}</b-button> -->
     </b-modal>
   </div>
 </template>
@@ -69,6 +70,7 @@ export default {
   methods: {
     onCapture () {
       this.img = this.$refs.webcam.capture()
+      this.$refs.webcam.pause()
       this.$store.commit('beginRequest')
       this.$bvModal.show('waiting')
       post('https://relit.xyz/classify', {
@@ -83,6 +85,9 @@ export default {
     },
     onConfirm: function () {
       this.$router.push('result')
+    },
+    onCancel: function () {
+      this.$refs.webcam.resume()
     },
     onError (error) {
       this.$router.replace('error')

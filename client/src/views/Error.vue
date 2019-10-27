@@ -3,7 +3,7 @@
     <div class="enclosure">
       <img src="@/assets/images/error.png" />
       <p class="title">Oops!</p>
-      <p class="description">Your device does not support WebRTC. </p>
+      <p class="description">Something went wrong, it cloud be your device does not support WebRTC, or you don't have a webcam ❌</p>
       <router-link class="button-enclosure" :to="{ name: 'landing' }"><Button label="Back" /></router-link>
     </div>
   </div>
