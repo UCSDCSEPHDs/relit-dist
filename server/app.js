@@ -1,5 +1,6 @@
 const path = require('path')
-const app = require('express')()
+const express = require('express')
+const app = express()
 const config = {
   ...require('getopts')(process.argv.slice(2), {
     alias: {
@@ -23,12 +24,13 @@ require('log-timestamp')
  * @author relubwu
  */
 
+app.use('/', express.static(path.resolve('../client/dist')))
+
 app.use(require('body-parser').json())
 
 app.post('/classify', [validator.body('img').exists()], async (req, res) => {
   if (!validator.validationResult(req).isEmpty()) { return res.status(400).end() }
   const { body: { img } } = req
-  console.log(img.length)
   require('axios').post(config.tx_api, querystring.stringify({
     key: config.tx_apikey,
     img
@@ -38,10 +40,7 @@ app.post('/classify', [validator.body('img').exists()], async (req, res) => {
     }
   })
     .then(({ data: { code, newslist } }) => {
-      if (code === 200)
-        Promise.resolve(newslist)
-      else
-        throw new Error({ msg: `${Code}: Cannot detect object from given data` });
+      if (code === 200) { Promise.resolve(newslist) } else { throw new Error({ msg: `${code}: Cannot detect object from given data` }) }
       // return code === 200 ? Promise.resolve(newslist) : res.status(code).end()
     })
     .then(list => {
@@ -60,7 +59,7 @@ app.post('/classify', [validator.body('img').exists()], async (req, res) => {
       })
     })
     .catch(e => {
-      return res.json(e.msg);
+      return res.json(e.msg)
     })
 })
 
