@@ -28,7 +28,6 @@ require('log-timestamp')
  */
 
 app.use('/', express.static(path.resolve('../client/dist')))
-app.use(favicon(path.resolve('../client/src/assets/favicon.ico')))
 
 app.use(require('body-parser').json())
 
