@@ -66,7 +66,7 @@ app.post('/classify', [validator.body('img').exists()], async (req, res) => {
 })
 
 https.createServer({
-  pfx: fs.readFileSync(config.ssl_pfx),
-  passphrase: fs.readFileSync(config.ssl_passphrase)
+  pfx: fs.readFileSync(path.resolve(config.ssl_pfx)),
+  passphrase: fs.readFileSync(path.resolve(config.ssl_passphrase))
 }, app)
   .listen(config.port, () => console.log(`Server instance started on ${config.port}`))

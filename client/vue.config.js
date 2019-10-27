@@ -1,4 +1,7 @@
 module.exports = {
+  devServer: {
+    https: true
+  },
   css: {
     loaderOptions: {
       sass: {
@@ -9,5 +12,6 @@ module.exports = {
         `
       }
     }
-  }
+  },
+  lintOnSave: false
 }
