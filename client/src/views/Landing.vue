@@ -51,6 +51,7 @@ export default {
         box-sizing: border-box;
         padding: 0 10vw;
         p {
+          @include font('gilbert');
           margin: 0 !important;
         }
         .title {

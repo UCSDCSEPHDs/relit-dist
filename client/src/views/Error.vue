@@ -41,6 +41,7 @@ export default {
         height: auto;
       }
       p {
+        @include font('gilbert');
         margin: 0 !important;
       }
       .title {

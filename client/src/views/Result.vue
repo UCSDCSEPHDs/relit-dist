@@ -47,6 +47,7 @@ export default {
     width: 100%;
     height: $router-view-height;
     p {
+      @include font('gilbert');
       margin: 0 !important;
     }
     .description {
