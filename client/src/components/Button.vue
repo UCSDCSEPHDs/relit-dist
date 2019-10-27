@@ -19,6 +19,7 @@ export default {
     height: 100%;
     color: white;
     background: linear-gradient(to right, #FF4E3B, #FF7800);
+    border: none;
     border-radius: 3rem;
   }
 </style>
