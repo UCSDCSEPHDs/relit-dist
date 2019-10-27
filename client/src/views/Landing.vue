@@ -42,7 +42,7 @@ export default {
       width: 100%;
       height: auto;
       img {
-        max-width: 20rem;
+        max-width: 15rem;
         box-sizing: border-box;
         padding: 7px 15px;
       }
