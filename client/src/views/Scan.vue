@@ -41,13 +41,21 @@ export default {
     },
     devices: function() {
       // Once we have a list select the first one
-      const [first, ...tail] = this.devices;
-      if (first) {
-        this.camera = first.deviceId;
-        this.deviceId = first.deviceId;
+      const length = this.devices.length
+      const [first, second, ...rest] = this.devices
+      let that = this
+      if(length == 1){
+        that.camera = first.deviceId
+        that.deviceId = first.deviceId
+      }else if(length > 1){
+        that.camera = second.deviceId
+        that.deviceId = second.deviceId
+      }else{
+        console.error("No camera detected")
       }
     }
   },
+
   methods: {
     onCapture() {
       this.img = this.$refs.webcam.capture();
