@@ -62,7 +62,7 @@ app.post('/classify', [validator.body('img').exists()], async (req, res) => {
       })
     })
     .catch(e => {
-      console.log(e)
+      console.error(e)
       return res.json(e.msg)
     })
 })
